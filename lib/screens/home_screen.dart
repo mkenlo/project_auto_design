@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:project_auto_design/screens/vehicle_list_screen.dart';
+import 'package:project_auto_design/widgets/custom_bottom_navbar.dart';
 
 import '../values/colors.dart';
 import '../values/dimen.dart';
-import '../widgets/CustomButton.dart';
+import '../widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -21,40 +23,25 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  Widget getPage(int index) {
-    if (index != 0) {
-      return Scaffold(
-          appBar: AppBar(
-              elevation: 0.0,
-              centerTitle: true,
-              title: Text("Intentionally left Blank")));
-    }
+  Widget _getPage(int index) {
+    if (index != 0) return _emptyScreen();
     return Home();
+  }
+
+  Widget _emptyScreen() {
+    return Scaffold(
+        appBar: AppBar(
+            backgroundColor: APP_BG,
+            elevation: 0.0,
+            centerTitle: true,
+            title: Text("Intentionally left Blank")));
   }
 
   @override
   Widget build(BuildContext context) {
-    final bottom = BottomNavigationBar(
-      selectedItemColor: Theme.of(context).colorScheme.secondary,
-      currentIndex: _selectedIndex,
-      onTap: _onItemTapped,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: APP_BG), label: 'Home'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.mode_comment_outlined, color: APP_BG),
-            label: 'Messages'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border, color: APP_BG),
-            label: 'Favorite'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.upload_file, color: APP_BG), label: 'Files'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.settings, color: APP_BG), label: "Settings"),
-      ],
-    );
-
-    return Scaffold(body: getPage(_selectedIndex), bottomNavigationBar: bottom);
+    final bottom = CustomBottomNavBar(_selectedIndex, _onItemTapped);
+    return Scaffold(
+        body: _getPage(_selectedIndex), bottomNavigationBar: bottom);
   }
 }
 
@@ -87,12 +74,14 @@ class Home extends StatelessWidget {
                 child: Column(children: [
               logo,
               searchBtn,
-              CustomButton("SEARCH BY VEHICLE TYPE", searchVehicleByType("")),
+              CustomButton("SEARCH BY VEHICLE TYPE", () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            VehicleListScreen("searchQuery")));
+              }),
               CustomButton("SEE DEALS OF THE DAY", () {})
             ]))));
-  }
-
-  searchVehicleByType(String searchQuery) {
-    //@TODO
   }
 }
