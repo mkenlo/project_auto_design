@@ -7,6 +7,10 @@ class Vehicle {
 
   Vehicle(this.make, this.model, this.quantity, this.year, this.price);
 
+  String description() {
+    return "${this.make} ${this.model}, ${this.year}";
+  }
+
   factory Vehicle.fromJson(Map<String, dynamic> json) {
     return Vehicle(json['make'], json['model'], json['vehicle_count'],
         json['year'], json['price']);

@@ -60,9 +60,27 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
 
   Widget _loadVehicles() {
     return FutureBuilder(
-        future: fetchAndFilterVehicles(""),
+        future: fetchAndFilterVehicles(widget.searchQuery),
         builder: (context, snapshot) {
-          return _buildGrid(snapshot.data);
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return Center(
+                  child: Text("Sorry, Error has occured",
+                      style: TextStyle(color: Colors.white)));
+            case ConnectionState.active:
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+            case ConnectionState.done:
+              if (snapshot.hasError)
+                return Text("Error in Data {$snapshot.error}",
+                    style: TextStyle(color: Colors.white));
+              if (!snapshot.hasData || snapshot.data.length == 0)
+                return Center(
+                    child: Text("Sorry, No match found",
+                        style: TextStyle(color: Colors.white)));
+              return _buildGrid(snapshot.data);
+          }
+          return null;
         });
   }
 
@@ -78,8 +96,14 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
 
   Widget _buildGridItem(Vehicle item) {
     return GridTile(
-        child: Image.asset("assets/images/transport.png", width: 150.0),
-        footer: Center(
-            child: Text(item.model, style: TextStyle(color: Colors.white))));
+        child: Image.asset("assets/images/transport.png"),
+        footer: Column(children: [
+          Text("\$" + item.price.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold)),
+          Text(item.description(), style: TextStyle(color: Colors.white))
+        ]));
   }
 }
