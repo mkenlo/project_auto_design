@@ -45,7 +45,18 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  TextEditingController _controller = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // @TODO replace this placeholder logo with an actual dummy image
@@ -58,6 +69,7 @@ class Home extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary,
                     fontSize: 32.0))));
     Widget searchBtn = TextField(
+        controller: _controller,
         decoration: InputDecoration(
             filled: true,
             fillColor: Color(0xFFF9F7F5),
@@ -65,7 +77,6 @@ class Home extends StatelessWidget {
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
             hintText: 'SEARCH MAKE AND MODEL'));
-
     return Material(
         child: Container(
             padding: EdgeInsets.all(DEFAULT_PADDING),
@@ -79,9 +90,22 @@ class Home extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            VehicleListScreen("searchQuery")));
+                            VehicleListScreen(_controller.text)));
               }),
-              CustomButton("SEE DEALS OF THE DAY", () {})
+              CustomButton("SEE DEALS OF THE DAY", () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(content: Text(_controller.text));
+                  },
+                );
+              })
             ]))));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
