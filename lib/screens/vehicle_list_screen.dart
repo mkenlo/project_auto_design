@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_auto_design/widgets/custom_bottom_navbar.dart';
 
+import '../data/fetch_service.dart';
+import '../data/models/vehicle_model.dart';
 import '../values/colors.dart';
+import '../values/dimen.dart';
 import 'home_screen.dart';
 
 class VehicleListScreen extends StatefulWidget {
@@ -47,26 +50,36 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
           centerTitle: true,
           backgroundColor: Colors.white70,
           title: Text("Vehicle Type", style: TextStyle(color: APP_BG))),
-      body: Container(color: APP_BG, child: _buildGrid()),
+      body: Container(
+          color: APP_BG,
+          padding: EdgeInsets.all(DEFAULT_PADDING),
+          child: _loadVehicles()),
       bottomNavigationBar: CustomBottomNavBar(_selectedIndex, _onItemTapped),
     );
   }
 
-  Widget _buildGrid() {
-    return GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: 6,
-        itemBuilder: (BuildContext context, int index) {
-          return _buildGridItem(index);
+  Widget _loadVehicles() {
+    return FutureBuilder(
+        future: fetchAndFilterVehicles(""),
+        builder: (context, snapshot) {
+          return _buildGrid(snapshot.data);
         });
   }
 
-  Widget _buildGridItem(int index) {
-    return Container(
-        child: Column(children: [
-      Image.asset("assets/images/transport.png", width: 150.0),
-      Text("Make $index", style: TextStyle(color: Colors.white))
-    ]));
+  Widget _buildGrid(List<Vehicle> items) {
+    return GridView.builder(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _buildGridItem(items.elementAt(index));
+        });
+  }
+
+  Widget _buildGridItem(Vehicle item) {
+    return GridTile(
+        child: Image.asset("assets/images/transport.png", width: 150.0),
+        footer: Center(
+            child: Text(item.model, style: TextStyle(color: Colors.white))));
   }
 }
