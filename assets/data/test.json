@@ -1,0 +1,36 @@
+[
+  {
+  "make": "Volkswagen",
+  "model": "Passat",
+  "year": 2018,
+  "vehicle_count": 222,
+  "price": 1907
+ },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2019,
+    "vehicle_count": 82,
+    "price": 12323
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Passat",
+    "year": 2020,
+    "vehicle_count": 280,
+    "price": 63903
+  },
+  {
+    "make": "Volvo",
+    "model": "S60",
+    "year": 2019,
+    "vehicle_count": 707,
+    "price": 108856
+  },
+  {
+    "make": "Volvo",
+    "model": "S60",
+    "year": 2020,
+    "vehicle_count": 293,
+    "price": 18572
+  }]
