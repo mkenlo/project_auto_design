@@ -5,15 +5,11 @@ import '../data/fetch_service.dart';
 import '../data/models/vehicle_model.dart';
 import '../values/colors.dart';
 import '../values/dimen.dart';
-import 'home_screen.dart';
 
 class VehicleListScreen extends StatefulWidget {
-  String searchQuery;
+  final String searchQuery;
 
-  VehicleListScreen(String searchQuery, {Key key}) {
-    //super(key: key);
-    this.searchQuery = searchQuery;
-  }
+  VehicleListScreen(this.searchQuery);
 
   @override
   _VehicleListScreenState createState() => _VehicleListScreenState();
@@ -26,20 +22,6 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  Widget _getPage(int index) {
-    if (index != 0) return _emptyScreen();
-    return Home();
-  }
-
-  Widget _emptyScreen() {
-    return Scaffold(
-        appBar: AppBar(
-            backgroundColor: APP_BG,
-            elevation: 0.0,
-            centerTitle: true,
-            title: Text("Intentionally left Blank")));
   }
 
   @override
@@ -80,11 +62,10 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
                         style: TextStyle(color: Colors.white)));
               return _buildGrid(snapshot.data);
           }
-          return null;
         });
   }
 
-  Widget _buildGrid(List<Vehicle> items) {
+  Widget _buildGrid(items) {
     return GridView.builder(
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

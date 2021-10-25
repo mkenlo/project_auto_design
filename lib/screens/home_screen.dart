@@ -7,8 +7,6 @@ import '../values/dimen.dart';
 import '../widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }

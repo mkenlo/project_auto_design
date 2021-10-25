@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../values/colors.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-  int selectedIndex;
-  Function onItemTapped;
-  CustomBottomNavBar(int selectedIndex, Function onItemTapped) {
-    this.selectedIndex = selectedIndex;
-    this.onItemTapped = onItemTapped;
-  }
+  final int selectedIndex;
+  final void Function(int) onItemTapped;
+
+  CustomBottomNavBar(this.selectedIndex, this.onItemTapped);
 
   @override
   Widget build(BuildContext context) {

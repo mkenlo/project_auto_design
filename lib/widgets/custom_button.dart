@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../values/dimen.dart';
 
 class CustomButton extends StatelessWidget {
-  String title;
-  Function callback;
-  CustomButton(String title, Function callback) {
-    this.title = title;
-    this.callback = callback;
-  }
+  final String title;
+  final void Function() callback;
+
+  CustomButton(this.title, this.callback);
 
   // @TODO remove hard coded values
   @override
