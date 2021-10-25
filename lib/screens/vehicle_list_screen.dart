@@ -62,6 +62,7 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
                         style: TextStyle(color: Colors.white)));
               return _buildGrid(snapshot.data);
           }
+          return null;
         });
   }
 

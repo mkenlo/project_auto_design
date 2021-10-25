@@ -57,24 +57,21 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // @TODO replace this placeholder logo with an actual dummy image
-    Widget logo = SizedBox(
-        width: 400.0,
-        height: 150.0,
-        child: Center(
-            child: Text("LOGO",
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 32.0))));
-    Widget searchBtn = TextField(
-        controller: _controller,
-        decoration: InputDecoration(
-            filled: true,
-            fillColor: Color(0xFFF9F7F5),
-            contentPadding: EdgeInsets.fromLTRB(20.0, 8.0, 8.0, 8.0),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
-            hintText: 'SEARCH MAKE AND MODEL'));
+    Widget logo = Padding(
+      padding: EdgeInsets.only(top: 50.0),
+      child: Image.asset("assets/images/logo.png"),
+    );
+    Widget searchBtn = Padding(
+        padding: EdgeInsets.symmetric(vertical: DEFAULT_PADDING * 2),
+        child: TextField(
+            controller: _controller,
+            decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFFF9F7F5),
+                contentPadding: EdgeInsets.fromLTRB(20.0, 8.0, 8.0, 8.0),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+                hintText: 'SEARCH MAKE AND MODEL')));
     return Material(
         child: Container(
             padding: EdgeInsets.all(DEFAULT_PADDING),
