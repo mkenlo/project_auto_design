@@ -5,6 +5,7 @@ import '../data/fetch_service.dart';
 import '../data/models/vehicle_model.dart';
 import '../values/colors.dart';
 import '../values/dimen.dart';
+import '../values/strings.dart';
 
 class VehicleListScreen extends StatefulWidget {
   final String searchQuery;
@@ -31,7 +32,7 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
           elevation: 0.0,
           centerTitle: true,
           backgroundColor: Colors.white70,
-          title: Text("Vehicle Type", style: TextStyle(color: APP_BG))),
+          title: Text(PAGE_TITLE_VEHICLE, style: TextStyle(color: APP_BG))),
       body: Container(
           color: APP_BG,
           padding: EdgeInsets.all(DEFAULT_PADDING),
@@ -47,18 +48,18 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               return Center(
-                  child: Text("Sorry, Error has occured",
+                  child: Text(MSG_ERROR_OCCURRED,
                       style: TextStyle(color: Colors.white)));
             case ConnectionState.active:
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
             case ConnectionState.done:
               if (snapshot.hasError)
-                return Text("Error in Data {$snapshot.error}",
+                return Text(MSG_ERROR_OCCURRED,
                     style: TextStyle(color: Colors.white));
               if (!snapshot.hasData || snapshot.data.length == 0)
                 return Center(
-                    child: Text("Sorry, No match found",
+                    child: Text(MSG_NOT_FOUND,
                         style: TextStyle(color: Colors.white)));
               return _buildGrid(snapshot.data);
           }

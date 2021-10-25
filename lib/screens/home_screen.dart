@@ -4,6 +4,7 @@ import 'package:project_auto_design/widgets/custom_bottom_navbar.dart';
 
 import '../values/colors.dart';
 import '../values/dimen.dart';
+import '../values/strings.dart';
 import '../widgets/custom_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,7 +12,6 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-//@TODO remove all hard coded dimensions and string values
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
@@ -67,11 +67,11 @@ class _HomeState extends State<Home> {
             controller: _controller,
             decoration: InputDecoration(
                 filled: true,
-                fillColor: Color(0xFFF9F7F5),
+                fillColor: APP_THEME.shade50,
                 contentPadding: EdgeInsets.fromLTRB(20.0, 8.0, 8.0, 8.0),
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30.0)),
-                hintText: 'SEARCH MAKE AND MODEL')));
+                hintText: BTN_SEARCH_HINT)));
     return Material(
         child: Container(
             padding: EdgeInsets.all(DEFAULT_PADDING),
@@ -80,14 +80,14 @@ class _HomeState extends State<Home> {
                 child: Column(children: [
               logo,
               searchBtn,
-              CustomButton("SEARCH BY VEHICLE TYPE", () {
+              CustomButton(BTN_SEARCH_BY_TYPE, () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
                             VehicleListScreen(_controller.text)));
               }),
-              CustomButton("SEE DEALS OF THE DAY", () {
+              CustomButton(BTN_SEARCH_DEALS, () {
                 showDialog(
                   context: context,
                   builder: (context) {

@@ -8,7 +8,6 @@ class CustomButton extends StatelessWidget {
 
   CustomButton(this.title, this.callback);
 
-  // @TODO remove hard coded values
   @override
   Widget build(BuildContext context) {
     return Container(
