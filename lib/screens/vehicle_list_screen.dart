@@ -65,14 +65,14 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               return Center(
-                  child: Text("Sorry, Error has occurred",
+                  child: Text("Sorry, Error has occured",
                       style: TextStyle(color: Colors.white)));
             case ConnectionState.active:
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
             case ConnectionState.done:
               if (snapshot.hasError)
-                return Text("Sorry, Error has occurred",
+                return Text("Error in Data {$snapshot.error}",
                     style: TextStyle(color: Colors.white));
               if (!snapshot.hasData || snapshot.data.length == 0)
                 return Center(
