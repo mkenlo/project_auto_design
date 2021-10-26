@@ -79,7 +79,7 @@ class _VehicleListScreenState extends State<VehicleListScreen> {
 
   Widget _buildGridItem(Vehicle item) {
     return GridTile(
-        child: Image.asset("assets/images/transport.png"),
+        child: Image.asset("assets/images/transport.png"), // dummy image
         footer: Column(children: [
           Text("\$" + item.price.toString(),
               style: TextStyle(

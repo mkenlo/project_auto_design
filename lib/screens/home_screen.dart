@@ -7,6 +7,7 @@ import '../values/dimen.dart';
 import '../values/strings.dart';
 import '../widgets/custom_button.dart';
 
+/* This class acts like a Page Manager for the bottom navigation*/
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -43,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+// Actual Home Page class
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -58,9 +60,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Widget logo = Padding(
-      padding: EdgeInsets.only(top: 50.0),
-      child: Image.asset("assets/images/logo.png"),
-    );
+        padding: EdgeInsets.only(top: 50.0),
+        child: Image.asset("assets/images/logo.png"));
     Widget searchBtn = Padding(
         padding: EdgeInsets.symmetric(vertical: DEFAULT_PADDING * 2),
         child: TextField(

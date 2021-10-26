@@ -18,15 +18,13 @@ class CustomBottomNavBar extends StatelessWidget {
         BottomNavigationBarItem(
             icon: Icon(Icons.home, color: APP_BG), label: 'Home'),
         BottomNavigationBarItem(
-            icon: Icon(Icons.mode_comment_outlined, color: APP_BG),
-            label: 'Messages'),
+            icon: Icon(Icons.mode_comment_outlined, color: APP_BG), label: ''),
         BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border, color: APP_BG),
-            label: 'Favorite'),
+            icon: Icon(Icons.favorite_border, color: APP_BG), label: ''),
         BottomNavigationBarItem(
-            icon: Icon(Icons.upload_file, color: APP_BG), label: 'Files'),
+            icon: Icon(Icons.upload_file, color: APP_BG), label: ''),
         BottomNavigationBarItem(
-            icon: Icon(Icons.settings, color: APP_BG), label: "Settings"),
+            icon: Icon(Icons.settings, color: APP_BG), label: ""),
       ],
     );
   }
